@@ -1,0 +1,14 @@
+body {
+  background-color: #282c34;
+  margin: 10px;
+}
+
+.cs__header {
+  min-height: 80px;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
