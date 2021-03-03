@@ -7,6 +7,7 @@ import './styles.scss';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: '638px',
+    maxWidth: "880px"
   },
   tableHeader: {
     color: "#ffff99",
@@ -25,14 +26,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#ff0000',
     fontWeight: 'bold',
   },
+  lastColumn: {
+    "& .MuiDataGrid-iconSeparator": {
+      display: "none",
+    }
+  }
 }));
 
 const DataGridComponent = () => {
   const classes = useStyles();
-
-  const API: string = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=100&currency=USD';
+  const API: string = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50&currency=USD';
 
   let [responseData, setResponseData] = useState([]);
+  let coinRows: any = [];
 
   useEffect(() => {
     axios
@@ -45,7 +51,6 @@ const DataGridComponent = () => {
       });
   }, []);
 
-  let coinRows: any = [];
 
   for (let key in responseData) {
     if (responseData.hasOwnProperty(key)) {
@@ -109,7 +114,7 @@ const DataGridComponent = () => {
     {
       field: 'priceChange1w',
       headerName: '1W Report',
-      headerClassName: classes.tableHeader,
+      headerClassName: `${classes.tableHeader} ${classes.lastColumn}`,
       width: 150,
       renderCell: (params: any) =>
         params.value > 0 ? (
@@ -128,6 +133,7 @@ const DataGridComponent = () => {
         rowsPerPageOptions={[10, 50, 100]}
         rows={coinRows}
         columns={columns}
+        hideFooterSelectedRowCount
       />
     </div>
   );
