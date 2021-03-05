@@ -1,22 +1,33 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import DataGridComponent from './DataGridComponent/';
-import { makeStyles } from '@material-ui/core/styles';
-import './App.scss';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    color: "#fff"
+    backgroundColor: "#282c34",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-});
+  header: {
+    minHeight: theme.spacing(8),
+    fontSize: "calc(10px + 2vmin)",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }
+}));
 
 const App = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <header className="cs__header">Crypto Currencies</header>
+    <Box className={classes.root} px={2}>
+      <header className={classes.header}>Crypto Currencies</header>
       <DataGridComponent />
-    </div>
+    </Box>
   );
 }
 
