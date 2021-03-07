@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -7,10 +7,10 @@ import './styles.scss';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: '638px',
-    width: "880px"
+    width: '880px',
   },
   tableHeader: {
-    color: "#ffff99",
+    color: '#ffff99',
     fontWeight: 'bold',
   },
   iconWidth: {
@@ -27,22 +27,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 'bold',
   },
   lastColumn: {
-    "& .MuiDataGrid-iconSeparator": {
-      display: "none",
-    }
-  }
+    '& .MuiDataGrid-iconSeparator': {
+      display: 'none',
+    },
+  },
 }));
 
 const DataGridComponent = () => {
   const classes = useStyles();
-  const API: string = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50&currency=USD';
+  const URL: string = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50&currency=USD';
 
   let [responseData, setResponseData] = useState([]);
   let coinRows: any = [];
 
   useEffect(() => {
     axios
-      .get(API)
+      .get(URL)
       .then((response) => {
         setResponseData(response.data);
       })
@@ -50,7 +50,6 @@ const DataGridComponent = () => {
         console.log(error);
       });
   }, []);
-
 
   for (let key in responseData) {
     if (responseData.hasOwnProperty(key)) {
@@ -83,7 +82,7 @@ const DataGridComponent = () => {
       field: 'symbol',
       headerName: 'Symbol',
       headerClassName: classes.tableHeader,
-      width: 120
+      width: 120,
     },
     {
       field: 'price',
@@ -108,8 +107,8 @@ const DataGridComponent = () => {
         params.value > 0 ? (
           <div className={classes.positive}>{params.value}%</div>
         ) : (
-            <div className={classes.negative}>{params.value}%</div>
-          ),
+          <div className={classes.negative}>{params.value}%</div>
+        ),
     },
     {
       field: 'priceChange1w',
@@ -120,8 +119,8 @@ const DataGridComponent = () => {
         params.value > 0 ? (
           <div className={classes.positive}>{params.value}%</div>
         ) : (
-            <div className={classes.negative}>{params.value}%</div>
-          ),
+          <div className={classes.negative}>{params.value}%</div>
+        ),
     },
   ];
 
