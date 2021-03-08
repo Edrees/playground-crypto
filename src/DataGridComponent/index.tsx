@@ -6,7 +6,6 @@ import './styles.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    height: '638px',
     width: '880px',
   },
   tableHeader: {
@@ -132,6 +131,7 @@ const DataGridComponent = () => {
         rowsPerPageOptions={[10, 50, 100]}
         rows={coinRows}
         columns={columns}
+        autoHeight
         hideFooterSelectedRowCount
       />
     </div>
