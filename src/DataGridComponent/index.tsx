@@ -6,7 +6,8 @@ import './styles.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    width: '880px',
+    width: '100%',
+    maxWidth: '880px',
   },
   tableHeader: {
     color: '#ffff99',

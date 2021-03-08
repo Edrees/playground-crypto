@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import TabBar from './TabBar'
 import DataGridComponent from './DataGridComponent/';
+import SelectedListComponent from './SelectedListComponent'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,16 +26,18 @@ const App = () => {
 
   return (
     <Router>
-      <Box className={classes.root} px={2}>
+      <Container className={classes.root} maxWidth="lg">
         <header className={classes.header}>Crypto Currencies</header>
         <TabBar />
         <Switch>
           <Route exact path="/">
             <DataGridComponent />
           </Route>
-          <Route path="/filtered">Where are you now?</Route>
+          <Route path="/filtered">
+            <SelectedListComponent />
+          </Route>
         </Switch>
-      </Box>
+      </Container>
     </Router>
   );
 };
