@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   header: {
     minHeight: theme.spacing(8),
     fontSize: 'calc(10px + 2vmin)',
-    color: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '880px',
   },
   tableHeader: {
-    color: '#ffff99',
+    backgroundColor: '#01b3e0',
+    color: '#ffffff',
     fontWeight: 'bold',
   },
   coinIcon: {
