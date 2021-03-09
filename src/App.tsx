@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TabBar from './TabBar'
-import DataGridComponent from './DataGridComponent/';
-import SelectedListComponent from './SelectedListComponent'
+import AllCoinsList from './AllCoinsList/';
+import SelectedCoinsList from './SelectedCoinsList'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -31,10 +31,10 @@ const App = () => {
         <TabBar />
         <Switch>
           <Route exact path="/">
-            <DataGridComponent />
+            <AllCoinsList />
           </Route>
           <Route path="/filtered">
-            <SelectedListComponent />
+            <SelectedCoinsList />
           </Route>
         </Switch>
       </Container>

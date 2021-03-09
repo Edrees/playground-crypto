@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabBarLink: {
     padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-    margin: theme.spacing(1),
+    marginLeft: theme.spacing(1),
     border: '1px solid #fff',
     borderRadius: "4px 4px 0 0",
     color: '#ffffff',

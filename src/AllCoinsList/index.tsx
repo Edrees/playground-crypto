@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import axios from 'axios';
+import fetchData from '../CoinsData/'
 import './styles.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: '#ffff99',
     fontWeight: 'bold',
   },
-  iconWidth: {
+  coinIcon: {
     '& img': {
       width: theme.spacing(3),
     },
@@ -33,29 +33,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const DataGridComponent = () => {
+const AllCoinsList = () => {
   const classes = useStyles();
-  const URL: string = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50&currency=USD';
-
-  let [responseData, setResponseData] = useState([]);
-  let coinRows: any = [];
+  let [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(URL)
-      .then((response) => {
-        setResponseData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  for (let key in responseData) {
-    if (responseData.hasOwnProperty(key)) {
-      coinRows = responseData[key];
-    }
-  }
+    fetchData().then(res => { setData(res.coins) })
+  }, [])
 
   const columns = [
     {
@@ -75,7 +59,7 @@ const DataGridComponent = () => {
       headerName: 'Icon',
       headerClassName: classes.tableHeader,
       width: 90,
-      cellClassName: classes.iconWidth,
+      cellClassName: classes.coinIcon,
       renderCell: (params: any) => <img src={params.value} alt={params.value} />,
     },
     {
@@ -130,7 +114,7 @@ const DataGridComponent = () => {
         className="cs__table"
         pageSize={10}
         rowsPerPageOptions={[10, 50, 100]}
-        rows={coinRows}
+        rows={data}
         columns={columns}
         autoHeight
         hideFooterSelectedRowCount
@@ -139,4 +123,4 @@ const DataGridComponent = () => {
   );
 };
 
-export default DataGridComponent;
+export default AllCoinsList;
