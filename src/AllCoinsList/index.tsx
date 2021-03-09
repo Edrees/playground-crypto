@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import fetchData from '../CoinsData/'
-import './styles.scss';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
     maxWidth: '880px',
+    '& .MuiDataGrid-columnsContainer': {
+      backgroundColor: '#01b3e0',
+      borderRadius: `${theme.spacing(1) / 2}px ${theme.spacing(1) / 2}px 0 0`
+    }
   },
   tableHeader: {
-    backgroundColor: '#01b3e0',
     color: '#ffffff',
     fontWeight: 'bold',
   },

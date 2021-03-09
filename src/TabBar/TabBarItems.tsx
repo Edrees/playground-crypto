@@ -6,10 +6,10 @@ interface TabBarItemProps {
 export const tabBarItems: Array<TabBarItemProps> = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Coins with default grid filter',
   },
   {
     path: '/filtered',
-    name: 'Selected',
+    name: 'Coins with custom filter',
   },
 ];
