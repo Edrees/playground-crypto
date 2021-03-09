@@ -10,7 +10,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& .MuiDataGrid-columnsContainer': {
       backgroundColor: '#01b3e0',
       borderRadius: `${theme.spacing(1) / 2}px ${theme.spacing(1) / 2}px 0 0`
-    }
+    },
+    '& .MuiDataGrid-colCellTitle': {
+      fontWeight: 'bold',
+    },
+    '& .MuiDataGrid-menuIconButton': {
+      color: '#ffffff',
+    },
   },
   tableHeader: {
     color: '#ffffff',
