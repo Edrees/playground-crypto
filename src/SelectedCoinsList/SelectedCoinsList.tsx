@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,6 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import fetchData from '../CoinsData/';
+import { toggleAction } from '../store/actions'
 
 const DRAWER_WIDTH = 180;
 
@@ -84,13 +86,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const SelectedCoinsList = () => {
+const SelectedCoinsList = ({ toggleAction, isOpen }: any) => {
   const classes = useStyles();
   const theme = useTheme();
 
   const [data, setData] = useState<any[]>([]);
   const [selectedCoinList, setSelectedCoinList] = useState<string[]>([]);
-  const [open, setOpen] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelectedCoinList(event.target.value as string[]);
@@ -102,22 +103,14 @@ const SelectedCoinsList = () => {
     });
   }, []);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
       <IconButton
         color="inherit"
         aria-label="open drawer"
         edge="end"
-        onClick={handleDrawerOpen}
-        className={`${classes.filterIcon} ${open ? classes.hide : classes.open}`}
+        onClick={() => toggleAction(true)}
+        className={`${classes.filterIcon} ${isOpen ? classes.hide : classes.open}`}
       >
         <MenuIcon />
       </IconButton>
@@ -177,13 +170,13 @@ const SelectedCoinsList = () => {
         className={classes.drawer}
         variant="persistent"
         anchor="right"
-        open={open}
+        open={isOpen}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={() => toggleAction(false)}>
             {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
@@ -220,4 +213,8 @@ const SelectedCoinsList = () => {
   );
 };
 
-export default SelectedCoinsList;
+const mapStateToProps = (state: any) => {
+  return { isOpen: state.toggleAction }
+}
+
+export default connect(mapStateToProps, { toggleAction })(SelectedCoinsList);
